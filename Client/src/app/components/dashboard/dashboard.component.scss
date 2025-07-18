@@ -1,0 +1,177 @@
+.dashboard-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 32px;
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  mat-card-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+  }
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  
+  mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.stat-info {
+  flex: 1;
+  
+  h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  p {
+    margin: 0 0 16px 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+}
+
+.recent-activity {
+  margin-top: 32px;
+}
+
+.person-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.person-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+.person-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #e3f2fd;
+  color: #1976d2;
+  
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.person-info {
+  flex: 1;
+  
+  h4 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  p {
+    margin: 0 0 8px 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  
+  &.role-hradmin {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+  }
+  
+  &.role-manager {
+    background-color: #fff3e0;
+    color: #f57c00;
+  }
+  
+  &.role-employee {
+    background-color: #e3f2fd;
+    color: #1976d2;
+  }
+}
+
+.person-salary {
+  text-align: right;
+  
+  .salary {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2e7d32;
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}

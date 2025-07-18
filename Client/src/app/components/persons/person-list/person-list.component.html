@@ -1,0 +1,112 @@
+<div class="person-list-container">
+  <div class="header">
+    <h1>Team Members</h1>
+    <button mat-raised-button color="primary" routerLink="/persons/create" *ngIf="canCreate()">
+      <mat-icon>add</mat-icon>
+      Add Person
+    </button>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <div class="loading-container" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+      </div>
+
+      <div *ngIf="!isLoading && persons">
+        <table mat-table [dataSource]="persons.persons" class="persons-table">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let person">
+              <div class="person-name">
+                <div class="avatar">
+                  <mat-icon>person</mat-icon>
+                </div>
+                <div>
+                  <div class="name">{{person.firstName}} {{person.lastName}}</div>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let person">{{person.email}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="jobTitle">
+            <th mat-header-cell *matHeaderCellDef>Job Title</th>
+            <td mat-cell *matCellDef="let person">{{person.jobTitle}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef>Department</th>
+            <td mat-cell *matCellDef="let person">
+              <span class="department-badge">{{person.department}}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef>Role</th>
+            <td mat-cell *matCellDef="let person">
+              <span class="role-badge" [class]="'role-' + person.role.toLowerCase()">
+                {{getRoleDisplayName(person.role)}}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="salary">
+            <th mat-header-cell *matHeaderCellDef>Salary</th>
+            <td mat-cell *matCellDef="let person">
+              <span class="salary">${{person.salary | number:'1.0-0'}}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let person">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/persons/{{person.id}}" *ngIf="canEdit(person)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>View</span>
+                </button>
+                <button mat-menu-item routerLink="/persons/{{person.id}}/edit" *ngIf="canEdit(person)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="deletePerson(person)" *ngIf="canDelete()">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator
+          [length]="persons.totalCount"
+          [pageSize]="persons.pageSize"
+          [pageIndex]="persons.page - 1"
+          [pageSizeOptions]="[5, 10, 25, 50]"
+          (page)="onPageChange($event)"
+          showFirstLastButtons>
+        </mat-paginator>
+      </div>
+
+      <div *ngIf="!isLoading && persons && persons.persons.length === 0" class="no-data">
+        <mat-icon>group</mat-icon>
+        <h3>No team members found</h3>
+        <p>Start by adding your first team member.</p>
+        <button mat-raised-button color="primary" routerLink="/persons/create" *ngIf="canCreate()">
+          Add Person
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

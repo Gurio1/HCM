@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  hcm:
+    build:
+      context: "C:\\Users\\Andrey-PC\\Desktop\\ukg\\HCM"
+      dockerfile: "HCM/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/HCM.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "hcm:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\Andrey-PC\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Andrey-PC\\Desktop\\ukg\\HCM\\HCM:/app:rw"
+    - "C:\\Users\\Andrey-PC\\Desktop\\ukg\\HCM:/src:rw"
+    working_dir: "/app"

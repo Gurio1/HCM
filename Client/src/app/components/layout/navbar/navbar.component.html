@@ -1,0 +1,52 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="logo" routerLink="/dashboard">
+      <mat-icon>business</mat-icon>
+      HCM System
+    </span>
+    
+    <div class="nav-links" *ngIf="currentUser">
+      <button mat-button routerLink="/dashboard" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon>
+        Dashboard
+      </button>
+      
+      <button mat-button routerLink="/persons" routerLinkActive="active" *ngIf="canViewPersons()">
+        <mat-icon>group</mat-icon>
+        Team
+      </button>
+      
+      <button mat-button routerLink="/persons/create" routerLinkActive="active" *ngIf="canCreatePersons()">
+        <mat-icon>person_add</mat-icon>
+        Add Person
+      </button>
+    </div>
+    
+    <span class="spacer"></span>
+    
+    <div class="user-menu" *ngIf="currentUser">
+      <button mat-button [matMenuTriggerFor]="menu" class="user-button">
+        <div class="user-avatar">
+          <mat-icon>person</mat-icon>
+        </div>
+        <div class="user-info">
+          <span class="user-email">{{currentUser.email}}</span>
+          <span class="user-role">{{getRoleDisplayName(currentUser.role)}}</span>
+        </div>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/profile">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,130 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+    <mat-card-header>
+      <mat-card-title>Create Account</mat-card-title>
+      <mat-card-subtitle>Join the HCM System</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required>
+            <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">
+              First name is required
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('firstName')?.hasError('maxlength')">
+              First name must be at most 50 characters
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required>
+            <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">
+              Last name is required
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('lastName')?.hasError('maxlength')">
+              Last name must be at most 50 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required>
+          <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Job Title</mat-label>
+            <input matInput formControlName="jobTitle" required>
+            <mat-error *ngIf="signupForm.get('jobTitle')?.hasError('required')">
+              Job title is required
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('jobTitle')?.hasError('maxlength')">
+              Job title must be at most 100 characters
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Department</mat-label>
+            <mat-select formControlName="department" required>
+              <mat-option *ngFor="let dept of departments" [value]="dept">
+                {{dept}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="signupForm.get('department')?.hasError('required')">
+              Department is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Salary</mat-label>
+          <input matInput type="number" formControlName="salary" required>
+          <span matPrefix>$&nbsp;</span>
+          <mat-error *ngIf="signupForm.get('salary')?.hasError('required')">
+            Salary is required
+          </mat-error>
+          <mat-error *ngIf="signupForm.get('salary')?.hasError('min')">
+            Salary must be non-negative
+          </mat-error>
+          <mat-error *ngIf="signupForm.get('salary')?.hasError('max')">
+            Salary is unrealistically high
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
+            Password is required
+          </mat-error>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters
+          </mat-error>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('invalidPassword')">
+            Password must contain at least one number and one special character
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmedPassword" required>
+          <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" type="button">
+            <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.get('confirmedPassword')?.hasError('required')">
+            Please confirm your password
+          </mat-error>
+          <mat-error *ngIf="signupForm.hasError('passwordMismatch')">
+            Passwords do not match
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" 
+                [disabled]="!signupForm.valid || isLoading" class="full-width signup-button">
+          <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+          <span *ngIf="!isLoading">Create Account</span>
+        </button>
+      </form>
+    </mat-card-content>
+    
+    <mat-card-actions align="center">
+      <button mat-button color="accent" (click)="navigateToLogin()">
+        Already have an account? Sign in
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

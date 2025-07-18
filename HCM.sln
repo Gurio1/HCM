@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCM", "HCM\HCM.csproj", "{01085FD0-857A-4AB1-AC80-3C90852F9414}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{704A4BB9-67B9-4921-93CA-B9ECBA66799B}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCM.Tests", "HCM.Tests\HCM.Tests.csproj", "{322FFA93-4256-4095-8B4B-01FE557C9A0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01085FD0-857A-4AB1-AC80-3C90852F9414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01085FD0-857A-4AB1-AC80-3C90852F9414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01085FD0-857A-4AB1-AC80-3C90852F9414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01085FD0-857A-4AB1-AC80-3C90852F9414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322FFA93-4256-4095-8B4B-01FE557C9A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322FFA93-4256-4095-8B4B-01FE557C9A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322FFA93-4256-4095-8B4B-01FE557C9A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322FFA93-4256-4095-8B4B-01FE557C9A0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
