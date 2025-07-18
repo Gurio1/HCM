@@ -31,7 +31,10 @@ public sealed class Endpoint : Endpoint<GetPersonByIdRequest, PersonResponse>
         var result = await authorizationService.AuthorizeAsync(User, person, "CanViewPerson");
         
         if (!result.Succeeded)
+        {
             await SendForbiddenAsync(ct);
+            return;
+        }
         
         await SendOkAsync(person.ToPersonResponse(), ct);
     }

@@ -26,7 +26,7 @@ public sealed class Endpoint : Endpoint<GetPersonsRequest,PagedResponse>
         
         if (role == ApplicationRoles.Manager)
         {
-            queryablePersons = queryablePersons.Where(p => p.Department == User.FindFirstValue("Department"));
+            queryablePersons = queryablePersons.Where(p => p.Department == User.FindFirstValue(ApplicationClaims.Department));
         }
         
         int totalCount = await queryablePersons.CountAsync(ct);

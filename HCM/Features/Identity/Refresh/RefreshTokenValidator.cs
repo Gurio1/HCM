@@ -1,5 +1,4 @@
-﻿using HCM.Domain.Identity;
-using HCM.Domain.Identity.RefreshTokens;
+﻿using HCM.Domain.Identity.RefreshTokens;
 
 namespace HCM.Features.Identity.Refresh;
 

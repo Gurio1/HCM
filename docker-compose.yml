@@ -1,0 +1,19 @@
+﻿services:
+  hcm:
+    image: hcm
+    build:
+      context: .
+      dockerfile: HCM/Dockerfile
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret123
+      POSTGRES_DB: HCM
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./.containers/db:/var/lib/postgresql/data

@@ -24,8 +24,3 @@ public class ResultWithoutValue
     public static ResultWithoutValue Failure(string message) => new(false, new CustomError(500, message));
     public static ResultWithoutValue CreateError(CustomError customError) => new(false, customError);
 }
-
-public sealed record CustomError(int Code, string Description)
-{
-    public static readonly CustomError None = new(0, string.Empty);
-}
